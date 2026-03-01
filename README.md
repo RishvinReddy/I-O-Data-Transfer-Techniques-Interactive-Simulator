@@ -1,6 +1,9 @@
-# ⚡ I/O Data Transfer Techniques – Interactive Simulator
+# ⚡ I/O Data Transfer Techniques – Interactive Simulator  
 
-> **Computer Architecture Project** · Implementation & Evaluation of Programmed I/O, Interrupt-Driven I/O, and DMA
+> 🎓 Computer Architecture Project  
+> A cycle-accurate, browser-based simulator for analyzing **Programmed I/O, Interrupt-Driven I/O, and DMA** performance.
+
+---
 
 [![GitHub Pages](https://img.shields.io/badge/Hosted%20on-GitHub%20Pages-blue?logo=github)](https://pages.github.com/)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
@@ -10,129 +13,233 @@
 
 ---
 
-## 🚀 Live Demo
+## 📑 Table of Contents
+
+- [🌐 Live Demo](#-live-demo)
+- [🧠 Project Overview](#-project-overview)
+- [🌟 Why This Project Stands Out](#-why-this-project-stands-out)
+- [📊 Techniques Compared](#-techniques-compared)
+- [✨ Core Features](#-core-features)
+- [📁 Project Structure](#-project-structure)
+- [🚀 Deployment Guide](#-deployment-guide)
+- [💻 Local Development](#-local-development)
+- [⌨ Keyboard Shortcuts](#-keyboard-shortcuts)
+- [🔬 Simulation Model](#-simulation-model)
+- [📚 Academic Concepts Demonstrated](#-academic-concepts-demonstrated)
+- [🛠 Tech Stack](#-tech-stack)
+- [🎯 Learning Outcomes](#-learning-outcomes)
+- [📄 License](#-license)
+- [👨‍💻 Author](#-author)
+
+---
+
+## 🌐 Live Demo
+
+👉 Hosted on GitHub Pages:
 
 ```
-https://<your-username>.github.io/<your-repo>/github-pages/
+https://RishvinReddy.github.io/I-O-Data-Transfer-Techniques-Interactive-Simulator/
 ```
 
 ---
 
-## 📋 Overview
+## 🧠 Project Overview
 
-This web application **simulates and compares** three fundamental I/O data transfer techniques on a **1 MB disk read scenario** with cycle-accurate hardware metrics — all running entirely in the browser.
+This web-based simulator models and compares three fundamental I/O data transfer techniques used in computer architecture:
+
+- 🔄 **Programmed I/O (Polling)**
+- ⚡ **Interrupt-Driven I/O**
+- 🚀 **Direct Memory Access (DMA)**
+
+The simulator performs:
+
+- Cycle-level performance modeling  
+- CPU utilization tracking  
+- Interrupt overhead calculation  
+- Throughput comparison  
+- Break-even analysis  
+
+All calculations run entirely in the browser using JavaScript — no backend required.
+
+---
+
+## 🌟 Why This Project Stands Out
+
+### 🔍 Quantitative, Not Just Visual
+
+Instead of stating “DMA is faster for large transfers,” this project proves it using:
+
+- Total cycle counts  
+- CPU utilization percentages  
+- Throughput calculations  
+- Speedup vs polling  
+- Break-even thresholds  
+
+This demonstrates analytical performance engineering.
+
+---
+
+### 🧠 Systems-Level Thinking
+
+The simulator models:
+
+- CPU cycle accounting  
+- Interrupt Service Routine (ISR) overhead  
+- Bus arbitration  
+- DMA setup and completion costs  
+- Scalability with increasing data size  
+
+These are real computer architecture and operating system concepts — not just UI simulations.
+
+---
+
+### 📊 Built Like a Real Performance Tool
+
+Includes:
+
+- Real-time charts  
+- CSV & JSON export  
+- URL-based configuration sharing  
+- Print-ready academic report mode  
+- Configurable hardware parameters  
+
+This mirrors how professional performance analysis tools work.
+
+---
+
+### 🚀 Strong Portfolio Signal
+
+This project demonstrates:
+
+- Hardware behavior modeling  
+- Performance optimization analysis  
+- Low-level systems understanding  
+- Clean frontend engineering  
+- Clear documentation  
+
+Relevant for roles in:
+
+- Embedded Systems  
+- IoT  
+- Firmware  
+- Systems Programming  
+- Operating Systems  
+- Computer Architecture  
+
+---
+
+## 📊 Techniques Compared
 
 | Technique | CPU During Transfer | Interrupts | Best For |
-|---|---|---|---|
-| 🔄 **Programmed I/O** | 100% busy (polling) | 0 | Tiny transfers |
-| ⚡ **Interrupt-Driven** | ~4% (ISR only) | N per block | Medium data |
-| 🚀 **DMA** | ~0% (CPU free) | 1 (completion) | Large data ✓ |
+|------------|-------------------|------------|----------|
+| 🔄 Programmed I/O | 100% Busy | 0 | Very small transfers |
+| ⚡ Interrupt-Driven | ISR only | Per block | Medium transfers |
+| 🚀 DMA | ~0% CPU | 1 completion | Large transfers |
 
 ---
 
-## ✨ Features
+## ✨ Core Features
 
-### 🎮 Interactive Simulation
-- **Run / Step / Reset** controls — run all 3 techniques simultaneously or step block-by-block
-- **5 animation speed levels** — Fastest to Slowest
-- **Configurable parameters** — file size, block size, CPU speed (1–4 GHz), device speed, ISR overhead, DMA setup cycles
+### 🎮 Interactive Simulation Engine
 
-### 📊 Live Visualizations (6 Charts)
-- **CPU Utilization %** — line chart comparing all 3 techniques in real time
-- **Throughput (MB/s)** — effective data rate as transfer progresses
-- **Transfer Progress** — block count over time
-- **Break-Even Analysis** — crossover point where DMA beats Interrupt I/O
-- **Gantt Chart** — CPU busy vs idle timeline per technique
-- **Overhead Pie / Doughnut** — overhead cycle breakdown
+- Run all techniques simultaneously  
+- Step-by-step execution mode  
+- Adjustable animation speed  
+- Configurable parameters:
+  - File size
+  - Block size
+  - CPU frequency (1–4 GHz)
+  - Device speed
+  - ISR overhead
+  - DMA setup cycles  
 
-### 🖥 Architecture Animations
-- **Animated hardware diagrams** — CPU, Memory, Disk Controller, DMA Controller drawn on Canvas
-- **Memory Grid Heatmap** — 16×16 grid fills block-by-block (red/green/purple per technique)
-- **Packet animations** — moving data packets across the bus
-- **Oscilloscope Waveform** — real-time CPU activity signal (HIGH=busy, LOW=idle)
-- **Live IRQ counter** with flashing dot on each interrupt
+---
 
-### 📈 Results & Analysis
-- **Performance grade cards** — D / B+ / A+ for each technique
-- **8-metric results table** — transfer time, throughput, CPU%, idle%, IRQs, overhead cycles, total cycles, speedup vs polling
-- **Radar chart** — 5-dimension comparison (CPU Efficiency, Throughput, Overhead, IRQs, Scalability)
-- **Break-even math box** — formula + calculated N_break and D_break
-- **Cycle-level statistics panel** — per-technique overhead/block, throughput, idle %
+### 📈 Real-Time Visualization
+
+- CPU Utilization Line Chart  
+- Throughput Comparison (MB/s)  
+- Transfer Progress Tracker  
+- Break-even Analysis Graph  
+- Gantt Timeline (CPU busy vs idle)  
+- Overhead Breakdown Chart  
+- Radar Comparison Chart  
+
+---
+
+### 🖥 Architecture-Level Animations
+
+- CPU, Memory, Disk Controller visualization  
+- DMA controller behavior simulation  
+- Memory grid heatmap  
+- Bus packet animation  
+- Oscilloscope-style CPU waveform  
+
+---
 
 ### 🔧 Productivity Tools
-- **⌨ Keyboard shortcuts** — `R` run, `S` step, `Esc` reset, `D` dark/light, `C` export CSV, `?` help
-- **🔗 Share URL** — encode config in URL query params, copy link instantly
-- **⬇ Export CSV** — download all metrics + config as `io_results.csv`
-- **{ } Export JSON** — full results + config as `io_results.json`
-- **🖨 Print Report** — clean printable layout (navbar/buttons hidden)
-- **📋 Event Log** — timestamped simulation events log with Copy button
 
-### 🎨 UI / UX
-- **Light theme (default)** with full **dark mode** toggle (🌙 / ☀️), persisted via `localStorage`
-- **Sticky navbar** with smooth-scroll navigation
-- **Algorithm Flowcharts section** — visual decision-flow diagrams for all 3 techniques
-- **Viva Preparation Guide** — 8 Q&A cards with keyword search filter
-- **Scroll reveal animations** — elements animate in as you scroll
-- **Floating particle background** in hero section
-- **🎉 Confetti** celebration on simulation complete
-- **Back-to-top button**
-- **Responsive** — works on desktop, tablet, and mobile
+- Dark / Light mode  
+- Keyboard shortcuts  
+- CSV export  
+- JSON export  
+- Shareable configuration links  
+- Print-ready layout  
+- Event log  
 
 ---
 
-## 📁 File Structure
+## 📁 Project Structure
 
 ```
 github-pages/
-├── index.html       # Full SPA — hero, theory, flowcharts, simulator, results, viva
-├── style.css        # Light/dark theme via CSS custom properties
-├── simulation.js    # Simulation engine + all feature logic
-└── README.md        # This file
+├── index.html        # Main application
+├── style.css         # Styling & themes
+├── simulation.js     # Simulation engine logic
+└── README.md         # Documentation
 ```
 
-**No build step required** — open `index.html` directly or serve via any static file host.
+No build tools required. Fully static deployment.
 
 ---
 
-## 🚀 Deploy to GitHub Pages
+## 🚀 Deployment Guide
 
-### Option A — Root deployment (simplest)
+### Deploy Entire Repository
 
 ```bash
-# From your project root
 git init
 git add .
-git commit -m "feat: I/O Simulation web app"
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+git commit -m "Initial commit – I/O Simulation"
+git branch -M main
+git remote add origin https://github.com/RishvinReddy/I-O-Data-Transfer-Techniques-Interactive-Simulator.git
 git push -u origin main
 ```
 
-Then on GitHub → **Settings → Pages → Source: `main` branch / `root` folder → Save**
+Then:
 
-Your URL: `https://YOUR_USERNAME.github.io/YOUR_REPO/github-pages/`
-
-### Option B — Deploy only the `github-pages` folder
-
-```bash
-git subtree push --prefix "github-pages" origin gh-pages
-```
-
-Then on GitHub → **Settings → Pages → Source: `gh-pages` branch / `root` → Save**
-
-Your URL: `https://YOUR_USERNAME.github.io/YOUR_REPO/`
+GitHub → Settings → Pages → Source → `main` branch → root
 
 ---
 
-## 💻 Local Preview
+## 💻 Local Development
+
+### Python
 
 ```bash
-# Python (fastest)
 python -m http.server 8765 --directory github-pages
-# → http://localhost:8765
+```
 
-# Node.js
+Open:
+
+```
+http://localhost:8765
+```
+
+### Node
+
+```bash
 npx serve github-pages
-# → http://localhost:3000
 ```
 
 ---
@@ -140,76 +247,116 @@ npx serve github-pages
 ## ⌨ Keyboard Shortcuts
 
 | Key | Action |
-|---|---|
-| `R` | Run simulation |
-| `S` | Step-by-step mode |
-| `Esc` | Reset |
-| `D` | Toggle dark / light theme |
-| `N` | Next block (step mode) |
-| `C` | Export CSV |
-| `?` | Show this help |
+|------|--------|
+| R | Run simulation |
+| S | Step mode |
+| N | Next block |
+| Esc | Reset |
+| D | Toggle theme |
+| C | Export CSV |
+| ? | Help |
 
 ---
 
 ## 🔬 Simulation Model
 
-**Scenario:** Read `N` blocks of `B` bytes from disk controller to main memory.
+### Scenario
 
-### Programmed I/O
+Transfer `N` blocks of size `B` bytes from disk controller to main memory.
+
+---
+
+### 🔄 Programmed I/O
+
 ```
 overhead_per_block = poll_cycles × 4
-CPU_utilization    = 100%   (always busy-waiting)
-total_cycles       = N × (poll_overhead + copy_cycles)
+CPU_utilization = 100%
+total_cycles = N × (poll_overhead + copy_cycles)
 ```
 
-### Interrupt-Driven I/O
+---
+
+### ⚡ Interrupt-Driven I/O
+
 ```
-overhead_per_block = ISR_entry + ISR_body + ISR_exit  (default 250 cy)
-CPU_utilization    = busy_cycles / total_cycles × 100
-total_cycles       = N × (device_transfer + ISR_overhead + copy_cycles)
+overhead_per_block = ISR_entry + ISR_body + ISR_exit
+total_cycles = N × (device_transfer + ISR_overhead + copy_cycles)
+CPU_utilization = busy_cycles / total_cycles × 100
 ```
 
-### DMA
+---
+
+### 🚀 DMA
+
 ```
-overhead           = DMA_setup + completion_IRQ  (default 600 cy, one-time)
-CPU_utilization    ≈ overhead / total_cycles × 100  (~0%)
-total_cycles       = DMA_setup + device_transfer_all + completion_IRQ
+total_cycles = DMA_setup + device_transfer_all + completion_IRQ
+CPU_utilization ≈ overhead / total_cycles × 100
 ```
 
-### Break-Even Formula
+---
+
+### 📉 Break-Even Formula
+
 ```
-N_break = ⌈ DMA_total_overhead / ISR_per_block ⌉
+N_break = ceil(DMA_total_overhead / ISR_per_block)
 D_break = N_break × block_size
+```
 
-DMA wins when: data_size > D_break
+DMA becomes more efficient when:
+
+```
+data_size > D_break
 ```
 
 ---
 
-## 📚 Theory Summary
+## 📚 Academic Concepts Demonstrated
 
-- **Programmed I/O** — CPU continuously polls a status register. Simple but wastes 100% of CPU cycles. Suitable only for very small, infrequent transfers.
-
-- **Interrupt-Driven I/O** — CPU starts the transfer and resumes other work. The device fires an interrupt for each block completed; the ISR copies data and returns. ISR overhead scales linearly with block count.
-
-- **DMA** — CPU programs a dedicated DMA controller with source, destination, and byte count. The DMA controller becomes bus master and transfers all data autonomously while the CPU executes freely. One completion interrupt at the end. Best for large, sustained transfers.
+- Polling vs Interrupt I/O tradeoffs  
+- ISR latency cost  
+- DMA controller behavior  
+- Bus arbitration  
+- CPU cycle modeling  
+- Performance scalability  
+- Throughput vs utilization tradeoff  
 
 ---
 
-## 🎓 Dependencies
+## 🛠 Tech Stack
 
-| Library | Version | Purpose |
-|---|---|---|
-| [Chart.js](https://www.chartjs.org/) | 4.4.0 | Line, bar, radar, doughnut charts |
-| [Google Fonts  (Inter + JetBrains Mono)](https://fonts.google.com/) | latest | Typography |
-| HTML5 Canvas API | browser built-in | Architecture diagrams, memory grid, oscilloscope, particles |
+- HTML5  
+- CSS3  
+- Vanilla JavaScript  
+- Chart.js  
+- Canvas API  
+- GitHub Pages  
+
+No frameworks. No backend. Fully static.
+
+---
+
+## 🎯 Learning Outcomes
+
+After using this simulator, students can:
+
+- Explain differences between I/O techniques  
+- Quantitatively compare performance  
+- Derive break-even conditions  
+- Understand interrupt scaling  
+- Analyze CPU utilization behavior  
 
 ---
 
 ## 📄 License
 
-This project is created for academic purposes as part of a **Computer Architecture** course project.
+Developed for academic and educational purposes as part of a Computer Architecture project.
 
 ---
 
-*Built with HTML · CSS · JavaScript · Chart.js · Hosted on GitHub Pages*
+## 👨‍💻 Author
+
+**Erolla Rishvin Reddy**  
+B.Tech – Computer Science  
+Focus: Systems, Architecture, Embedded & Performance Engineering  
+
+---
